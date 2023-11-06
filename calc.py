@@ -44,6 +44,8 @@ def print_result(number):
                 ending += x
                 break
         result += [ending]
+    if integer_part == "0":
+        result = ["ноль"] + result
     return " ".join(result)
 def fix_float(string):
     flag = False
@@ -103,5 +105,8 @@ def calc():
     print(numbers)
     print(eval(" ".join(numbers)))
     a = eval(" ".join(numbers))
+    if isinstance(a, float):
+        a = float(str(a)[:str(a).index(".") + 8])
+    
     print(print_result(a))
 calc()
