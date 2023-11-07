@@ -20,7 +20,13 @@ OPERATIONS = {"плюс": "+", "минус": "-", "умножить на": "*", 
 FLOAT_ENDINGS = {"ых": lambda x: x % 10 != 1 or x == 11, "ое": lambda x: x % 10 == 1 and x != 1 and x != 11, "ая": lambda x: x == 1}
 COMBINATE = {"размещений": lambda x, y: factorial(x) / factorial(x - y), "сочетаний": lambda x, y: factorial(x) / factorial(y) / factorial(x - y), "перестановок": lambda x: factorial(x)}
 def check_period(number):
-    pass
+    ln = len(number)
+    for i in range(1, ln):
+        period = (number[:i] * ln)[:ln]
+        print(period, number[:i])
+        if period == number:
+            return number[:i]
+    return False
 def print_result(number):
     if number in TO_STRING.keys(): return TO_STRING[number]
     def int_help(number):
@@ -106,7 +112,10 @@ def calc():
     print(eval(" ".join(numbers)))
     a = eval(" ".join(numbers))
     if isinstance(a, float):
+        float_part = str(a).split(".")[1]
+        check_period_flag = check_period(float_part)
         a = float(str(a)[:str(a).index(".") + 8])
-    
+        print(check_period_flag)
+
     print(print_result(a))
 calc()
