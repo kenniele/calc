@@ -23,7 +23,6 @@ def check_period(number):
     ln = len(number)
     for i in range(1, ln):
         period = (number[:i] * ln)[:ln]
-        print(period, number[:i])
         if period == number:
             return number[:i]
     return False
@@ -68,7 +67,6 @@ def fix_float(string):
                     break
             if sum(stack) == 0:
                 temp = result.pop()
-                print("когда стак пустой", temp)
                 while temp not in OPERATIONS.values():
                     stack.append(temp)
                     if len(result) == 0:
@@ -82,8 +80,6 @@ def fix_float(string):
             stack.append(string[i])
         elif (not flag) and string[i] != "и" and (not any([str(string[i]).endswith(k) for k in FLOAT_ENDINGS])):
             result.append(string[i])
-        print("текущий стак", stack, "то, что храниться в результирующем массиве", result)
-        input()
     return result
 def calc():
     string = input("Введите арифметическое выражение словами: ")
@@ -94,9 +90,7 @@ def calc():
     for i in range(len(string)): #целые числа
         if string[i] in TO_NUMBER:
             string[i] = TO_NUMBER[string[i]]
-    print(string)
     string = fix_float(string)
-    print(string)
     numbers = []
     sm = 0
     for i in range(len(string)):
@@ -111,11 +105,5 @@ def calc():
     print(numbers)
     print(eval(" ".join(numbers)))
     a = eval(" ".join(numbers))
-    if isinstance(a, float):
-        float_part = str(a).split(".")[1]
-        check_period_flag = check_period(float_part)
-        a = float(str(a)[:str(a).index(".") + 8])
-        print(check_period_flag)
-
     print(print_result(a))
 calc()
