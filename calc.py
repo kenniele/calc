@@ -18,13 +18,6 @@ FLOAT_BEGINS = {1: "десят", 2: "сот", 3: "тысячн", 4: "десят�
 OPERATIONS = {"плюс": "+", "минус": "-", "умножить на": "*", "разделить на": "/", "скобка открывается": "(", "скобка закрывается": ")", "в степени": "**"}
 OPERATIONS_CONFLICT = {"плюс минус": "минус", "минус плюс": "минус", "минус минус": "минус", "плюс плюс": "плюс"}
 FLOAT_ENDINGS = {"ых": lambda x: x % 10 != 1 or x == 11, "ое": lambda x: x % 10 == 1 and x != 1 and x != 11, "ая": lambda x: x == 1}
-def check_period(number):
-    ln = len(number)
-    for i in range(1, ln):
-        period = (number[:i] * ln)[:ln]
-        if period == number:
-            return number[:i]
-    return False
 def print_result(number):
     if number in TO_STRING.keys(): return TO_STRING[number]
     def int_help(number):
@@ -73,7 +66,7 @@ def fix_float(string):
                     temp = result.pop()
             result.append(temp) if temp in OPERATIONS.values() else None
             float_result = sum(stack) / FLOAT_DICT[k]
-            result.append(float_result) if check_period(float_result) else result.append(round(float_result, 6))
+            result.append(round(float_result, 6))
             stack = []
         if flag and string[i] != "и":
             stack.append(string[i])
