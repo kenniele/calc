@@ -100,8 +100,7 @@ def calc():
             numbers.append(string[i])
             sm = 0
     numbers.append(str(sm))
-    print(numbers)
-    print(eval(" ".join(numbers)))
-    a = eval(" ".join(numbers))
-    print(print_result(a))
+    result_int = eval(" ".join(numbers))
+    result_string = print_result(result_int)
+    print(result_string)
 calc()
