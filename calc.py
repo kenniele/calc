@@ -18,7 +18,6 @@ FLOAT_DICT = {"десят": 10, "сот": 100, "тысячн": 1000, "десят
 FLOAT_BEGINS = {1: "десят", 2: "сот", 3: "тысячн", 4: "десятитысячн", 5: "статысячн", 6: "миллионн"}
 OPERATIONS = {"плюс": "+", "минус": "-", "умножить на": "*", "разделить на": "/", "скобка открывается": "(", "скобка закрывается": ")", "в степени": "**"}
 FLOAT_ENDINGS = {"ых": lambda x: x % 10 != 1 or x == 11, "ое": lambda x: x % 10 == 1 and x != 1 and x != 11, "ая": lambda x: x == 1}
-COMBINATE = {"размещений": lambda x, y: factorial(x) / factorial(x - y), "сочетаний": lambda x, y: factorial(x) / factorial(y) / factorial(x - y), "перестановок": lambda x: factorial(x)}
 def check_period(number):
     ln = len(number)
     for i in range(1, ln):
